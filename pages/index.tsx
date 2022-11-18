@@ -2,7 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Web3Modal from "web3modal";
 import { ethers, providers } from "ethers";
-import { useEffect, useRef, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 
 export default function Home() {
   // walletConnected keep track of whether the user's wallet is connected or not
@@ -18,7 +18,7 @@ export default function Home() {
    * Sets the ENS, if the current connected address has an associated ENS or else it sets
    * the address of the connected account
    */
-  const setENSOrAddress = async (address, web3Provider) => {
+  const setENSOrAddress = async (address: SetStateAction<string>, web3Provider: ethers.providers.Web3Provider) => {
     // Lookup the ENS related to the given address
     var _ens = await web3Provider.lookupAddress(address);
     // If the address has an ENS set the ENS or else just set the address
